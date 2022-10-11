@@ -8,10 +8,12 @@
 * mult() - перемножує збережені значення та повертає результат.
  */
 
+// const a = 12;
+// const b = 52;
+
 const calculator = {
   a: 0,
   b: 0,
-
   read(firstValue, secondValue) {
     this.a = firstValue;
     this.b = secondValue;

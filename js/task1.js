@@ -13,18 +13,13 @@ const chopShop = {
   ],
 
   calcTotalPrice(stoneName) {
-    const result = this.stones.find(({ name }) => name === stoneName);
+    let total = 0;
+    const obj = this.stones.find(({ name }) => name === stoneName);
 
-    if (!result) return 'Not found';
-
-    const { price, quantity } = result;
-    return price * quantity;
-
-    // for (const stone of this.stones) {
-    //   if (stone.name === stoneName) {
-    //     return stone.price * stone.quantity;
-    //   }
-    // }
+    if (!obj) return total;
+    const { price, quantity } = obj;
+    total = price * quantity;
+    return total;
   },
 };
 

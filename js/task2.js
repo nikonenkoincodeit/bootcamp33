@@ -11,13 +11,13 @@ const phonebook = {
   contacts: [],
 
   add(object) {
-    const contact = {
-      list: 'users',
-      ...object,
+    const obj = {
       id: this.generateId(),
-      date: this.getDate(),
+      createdAt: this.getDate(),
+      list: '1111111',
+      ...object,
     };
-    this.contacts.push(contact);
+    this.contacts.push(obj);
   },
 
   generateId() {

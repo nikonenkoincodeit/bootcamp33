@@ -5,28 +5,47 @@
  * Використовуйте замикання та bind, щоб встановити змінній "i" різні значення
  * Виведіть результат у консоль
  */
-
-function counter() {
-  console.log('this :>> ', this);
-  this.i += 1;
-  return this.i;
-}
-
 const objA = {
-  i: 1,
+  i: 0,
 };
 
 const objB = {
-  i: 400,
+  i: 0,
 };
 
-console.log(counter());
-console.log(counter());
+function counter() {
+  this.i += 1;
+  //   console.log('this.i :>> ', this.i);
+  console.log('objA :>> ', objA);
+}
 
-// const counter1 = counter.bind(objA);
-// const counter2 = counter.bind(objB);
+// const objACounter = counter.bind(objA);
+// objACounter();
+// objACounter();
+// objACounter();
+// objACounter();
+// function counter() {
+//   let i = 0;
+//   const increm = () => {
+//     i += 1;
+//     console.log('i :>> ', i);
+//   };
+//   return increm;
+// }
 
-// console.log(counter1());
-// console.log(counter1());
-// console.log(counter2());
-// console.log(counter2());
+// const seHi = () => console.log('Hello :>> ', user);
+// seHi();
+
+// const c = counter();
+// c();
+// c();
+// c();
+// c();
+
+const user = {
+  name: 'Poly',
+};
+
+// const user2 = Object.create(null);
+
+// console.log('user2 :>> ', user2);

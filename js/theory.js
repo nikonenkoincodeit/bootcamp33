@@ -1,112 +1,107 @@
-// Об'єкти створюються, щоб представляти сутності реального світу,
-// будь то користувачі, замовлення тощо
+'use strict';
+//This
+//This - це ключове слово, що використовується в JavaScript, яке має особливе значення,
+//що залежить від контексту, в якому воно застосовується. this - це посилання на об'єкт у контексті якого була викликана функція
 
-// let user = {
+// const user = {
 //   name: 'Poly',
-//   age: 30,
-// };
-
-// І так само, як і в реальному світі, користувач може робити дії: вибирати щось в кошик,
-// авторизуватися, оплачувати тощо.
-// Такі дії JavaScript представлені властивостями-функціями об'єкта.
-let user = {
-  name: 'Poly',
-  age: 30,
-  sayHi(hi, a, b, c) {
-    console.log('a, b, c :>> ', a, b, c);
-    console.log(hi, this.name);
-  },
-};
-
-let user2 = {
-  name: 'Ajax',
-  age: 25,
-};
-
-// const sayHi = user.sayHi;
-
-// sayHi.call(user2, 'Hello, ', 25, {}, [1, 5,58]);
-// sayHi.apply(user2, ['Hello, ', 25, {}, [1, 5, 58]]);
-
-//const sayHi = user.sayHi.bind(user2, 'Hello, ', 25, {}, [1, 5, 58]);
-// sayHi();
-
-user.sayHi.bind(user2, 'Hello, ', 25, {}, [1, 5, 58])();
-
-//console.log('sayHi :>> ', sayHi);
-
-// function sayHi() {
-//   console.log(this.name);
-// }
-
-// sayHi.call(user);
-// user.sayHi();
-// let user = {
-//   name: 'Poly',
-//   age: 30,
-// };
-// user.sayHi = function (hi) {
-//   console.log(hi, this.name);
-// };
-// user.sayHi();
-// console.log('user :>> ', user);
-//Для доступу до інформації всередині об'єкта метод може використовувати ключове слово this.
-
-//this
-//Значення this – це об'єкт перед точкою, який використовувався для виклику методу.
-
-// let user = {
-//   name: 'Poly',
-//   age: 30,
-//   sayHi() {
-//     console.log(this.name);
+//   syHi() {
+//     console.log('Hello, ', this.name);
 //   },
 // };
-
-// user.sayHi();
+// user.syHi();
+//Необхідно засвоїти лише одне правило для визначення this - значення контексту всередині
+//функції (не стрілочної) визначається не на момент її створення, а на момент виклику.
+//Тобто значення this визначається тим, як викликається функція, а не де вона була
+//оголошена.
 
 //this у глобальній області видимості
 
-// console.log('this :>> ', this);
+// function foo() {
+//   console.log('this :>> ', this);
+// }
+// foo();
+//this в методі об'єкта
 
 //this в callback-функціях
 
-// function foo(callback) {
-//   callback(); //error
-// }
-
-//foo(user.sayHi);
-//this у стрілочних функціях
-
-//call()
-
-// function foo(callback) {
-//   callback.call(user, 'Hello'); //error
-// }
-
-// foo(user.sayHi);
-
-//apply() []
-
-// function foo(callback) {
-//   callback.apply(user, ['Hello']);
-// }
-
-// foo(user.sayHi);
-
-//bind()
-
-// function foo(callback) {
-//   callback();
-// }
-
-// const sayHi = user.sayHi.bind(user, 'Hello');
-// foo(sayHi);
-
-// console.log('this :>> ', this);
-
-// const foo = () => {
+// const obj = {
+//   name: 'Mango',
+//   syHi() {
+//     console.log('Hello, ', this.name);
+//   },
+// };
+// // obj.syHi();
+// const foo = function (callback) {
 //   console.log('this :>> ', this);
+//   callback();
 // };
 
-// foo();
+// foo(obj.syHi);
+
+//this у стрілочних функціях
+// const fooArr = () => console.log('this :>> ', this);
+// fooArr();
+
+// const user2 = {
+//   name: 'Poly',
+//   syHi() {
+//     console.log('this :>> ', this);
+//     const foo = () => console.log('this :>> ', this.name);
+//     foo();
+//   },
+// };
+
+// user2.syHi()
+// const f1 = user2.syHi;
+// f1();
+
+//Метод call()
+// const user = {
+//   name: 'Poly',
+//   syHi(params) {
+//     console.log('params :>> ', params);
+//     console.log('Hello, ', this.name);
+//   },
+// };
+
+// const userMango = {
+//   name: 'Mango',
+// };
+
+// user.syHi.call(userMango, 15);
+
+//Метод apply() (масив параметрів)
+// const user = {
+//   name: 'Poly',
+//   syHi(params) {
+//     console.log('params :>> ', params);
+//     console.log('Hello, ', this.name);
+//   },
+// };
+
+// const userMango = {
+//   name: 'Mango',
+// };
+
+// user.syHi.apply(userMango, [15]);
+
+//Метод bind()
+
+const user = {
+  name: 'Poly',
+  syHi(params) {
+    console.log('params :>> ', params);
+    console.log('Hello, ', this.name);
+  },
+};
+
+const userMango = {
+  name: 'Mango',
+};
+
+// user.syHi.bind(userMango, 15)();
+const f1 = user.syHi.bind(userMango, 15);
+// f1();
+
+console.log(f1 === user.syHi);
