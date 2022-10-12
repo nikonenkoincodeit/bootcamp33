@@ -5,23 +5,23 @@
  */
 
 class User {
-  #login = '';
-  #email = '';
-  constructor({ login = '', email = '' } = {}) {
-    this.#login = login;
+  #email;
+  #login;
+  constructor({ email, login }) {
     this.#email = email;
-  }
-  get login() {
-    return this.#login;
-  }
-  set login(value) {
-    this.#login = value;
+    this.#login = login;
   }
   get email() {
     return this.#email;
   }
   set email(value) {
     this.#email = value;
+  }
+  get login() {
+    return this.#login;
+  }
+  set login(value) {
+    this.#login = value;
   }
 }
 
@@ -30,26 +30,22 @@ const mango = new User({
   email: 'mango@dog.woof',
 });
 
+mango.login = 'Mangodoge';
 console.log(mango.login);
-console.log(mango.login);
+
+mango.email = 'mango@mail.com';
 console.log(mango.email);
 
-// mango.login = 'Mangodoge';
-// console.log(mango.login);
+const poly = new User({
+  login: 'Poly',
+  email: 'poly@mail.com',
+});
 
-// mango.email = 'mango@mail.com';
-// console.log(mango.email);
+console.log(poly.login);
+console.log(poly.email);
 
-// const poly = new User({
-//   login: 'Poly',
-//   email: 'poly@mail.com',
-// });
+poly.login = 'Polycutie';
+console.log(poly.login);
 
-// console.log(poly.login);
-// console.log(poly.email);
-
-// poly.login = 'Polycutie';
-// console.log(poly.login);
-
-// poly.email = 'polyrobo@mail.com';
-// console.log(poly.email);
+poly.email = 'polyrobo@mail.com';
+console.log(poly.email);

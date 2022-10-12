@@ -16,17 +16,15 @@
  */
 
 class Blogger {
-  constructor({ email = '', age = 0, numberOfPosts = 0, topics = [] }) {
+  constructor({ email = '', age = 0, numberOfPosts = 0, topics = [] } = {}) {
     this.email = email;
     this.age = age;
     this.numberOfPosts = numberOfPosts;
     this.topics = topics;
   }
-
   getInfo() {
     return `User ${this.email} is ${this.age} years old and has ${this.numberOfPosts} posts.`;
   }
-
   updatePostCount(value) {
     this.numberOfPosts += value;
   }
